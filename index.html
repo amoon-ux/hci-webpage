@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCI Course — Human Computer Interaction</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAVBAR ══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span>HCI<em>Course</em></span>
+    </div>
+    <div class="nav-links">
+      <a href="#instructor">Instructor</a>
+      <a href="#outline">Outline</a>
+      <a href="#topics">Topics</a>
+      <a href="#books">Books</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#resources">Resources</a>
+    </div>
+    <button class="search-toggle" id="searchToggle" aria-label="Open search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Search
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ SEARCH OVERLAY ══ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <button class="search-close" id="searchClose">✕</button>
+    <h3>Search Course Content</h3>
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Type keyword, topic..." autocomplete="off" />
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters-row">
+      <div class="filter-group">
+        <label>Filter by Week</label>
+        <select id="filterWeek">
+  <option value="">All Weeks</option>
+  <option value="1">Week 1</option>
+  <option value="2">Week 2</option>
+  <option value="3">Week 3</option>
+  <option value="4">Week 4</option>
+  <option value="5">Week 5</option>
+  <option value="6">Week 6</option>
+  <option value="7">Week 7</option>
+  <option value="8">Week 8</option>
+  <option value="9">Week 9</option>
+  <option value="10">Week 10</option>
+  <option value="11">Week 11</option>
+  <option value="12">Week 12</option>
+  <option value="13">Week 13</option>
+  <option value="14">Week 14</option>
+  <option value="15">Week 15</option>
+</select>
+      </div>
+      <div class="filter-group">
+        <label>Filter by Date</label>
+        <input type="date" id="filterDate" />
+      </div>
+      <div class="filter-group">
+        <label>Filter by Topic</label>
+        <select id="filterTopic">
+          <option value="">All Topics</option>
+      <option value="usability"> HCI Introduction</option>
+      <option value="cognitive">Human Information Processing</option>
+      <option value="computer">The Computer in HCI</option>
+      <option value="design">The Interaction Model</option>
+      <option value="ergonomics">Ergonomics & Workspace Design</option>
+      <option value="media">Media & Interface Styles</option>
+      <option value="ucd">Design Process, TCUID & UCD</option>
+      <option value="heuristics">Heuristics & Design Guidelines</option>
+        </select>
+      </div>
+      <button class="filter-apply" id="applyFilters">Apply Filters</button>
+      <button class="filter-clear" id="clearFilters">Clear</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!--HERO -->
+<section class="hero" id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="dot-grid"></div>
+
+  <div class="ui-card ui-card--tl float-anim" style="animation-delay:0s">
+    <svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="14" r="7" stroke="#7bafd4" stroke-width="2.2"/><path d="M6 34c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#7bafd4" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </div>
+  <div class="ui-card ui-card--tr float-anim" style="animation-delay:1.4s">
+    <svg width="34" height="34" viewBox="0 0 36 36" fill="none"><path d="M10 6l16 12-7 2-3 8L10 6z" stroke="#7bafd4" stroke-width="2.2" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="ui-card ui-card--ml float-anim" style="animation-delay:0.8s">
+    <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect x="17" y="3" width="20" height="20" rx="3" transform="rotate(45 17 3)" stroke="#7bafd4" stroke-width="2.2"/></svg>
+  </div>
+  <div class="ui-card ui-card--bl float-anim card-wide" style="animation-delay:2s">
+    <div class="mock-img"></div>
+    <div class="mock-lines"><div class="mock-line long"></div><div class="mock-line short"></div></div>
+  </div>
+  <div class="ui-card ui-card--br float-anim card-wide" style="animation-delay:1s">
+    <div class="mock-bar"><span></span><span></span><span></span></div>
+    <div class="mock-lines mt6"><div class="mock-line long"></div><div class="mock-line mid"></div><div class="mock-line short"></div></div>
+  </div>
+  <div class="ui-card ui-card--avatar float-anim" style="animation-delay:2.5s">
+    <svg width="36" height="36" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="14" r="7" stroke="#7bafd4" stroke-width="2.2"/><path d="M6 36c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke="#7bafd4" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </div>
+  <div class="dot-accent dot-a float-anim" style="animation-delay:0.5s"></div>
+  <div class="dot-accent dot-b float-anim" style="animation-delay:1.8s"></div>
+  <div class="dot-accent dot-c float-anim" style="animation-delay:3s"></div>
+
+  <svg class="conn-lines" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <line x1="310" y1="120" x2="420" y2="200" stroke="#b8d4ee" stroke-width="1.2" stroke-dasharray="5 5"/>
+    <line x1="420" y1="200" x2="590" y2="180" stroke="#b8d4ee" stroke-width="1.2" stroke-dasharray="5 5"/>
+    <line x1="310" y1="120" x2="310" y2="420" stroke="#b8d4ee" stroke-width="1.2" stroke-dasharray="5 5"/>
+    <line x1="880" y1="150" x2="820" y2="280" stroke="#b8d4ee" stroke-width="1.2" stroke-dasharray="5 5"/>
+  </svg>
+<!-- HERO CONTENT -->
+  <div class="hero-content">
+    <div class="hero-badge">CSC 425-1 · Spring 2026</div>
+    <h1>Human Computer<br><em>Interaction</em></h1>
+    <p>Master the principles, methods, and practices that shape how humans interact with technology. Design intuitive, accessible, user-centered digital experiences.</p>
+    <div class="hero-actions">
+      <a href="#outline" class="btn-primary">Explore Course</a>
+      <a href="#resources" class="btn-ghost">View Resources</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>15</strong><span>Weeks</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>24</strong><span>Lectures</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>3</strong><span>Credit Hours</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>100+</strong><span>Resources</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="section" id="instructor">
+  <div class="section-label">Meet Your Instructor</div>
+  <h2 class="section-title">The Expert Behind<br>The Course</h2>
+  <div class="instructor-card">
+    <div class="instructor-avatar">
+      <div class="avatar-ring"></div>
+      <div class="avatar-inner">
+        <img src="agaha.PNG" alt="Sir Khawaja Tahir" class="instructor-img">
+      </div>
+    </div>
+    <div class="instructor-info">
+      <h3>Sir Khawaja Tahir</h3>
+      <div class="instructor-title">MS(CS), Lecturer</div>
+      <p>Mr. Khawaja Tahir Mahmood is a senior academic and researcher in the field of Computer Science with 20+ years of teaching experience in Human–Computer Interaction (HCI), Software Engineering, and Final Year Project supervision at Federal Urdu University, Islamabad. His research interests include HCI, usability evaluation, mobile usability, and user-centered system design, with publications in IEEE.</p>
+      <div class="instructor-tags">
+        <span>User Research</span>
+        <span>Cognitive Systems</span>
+        <span>Accessibility</span>
+        <span>Prototyping</span>
+        <span>Usability Testing</span>
+      </div>
+      <div class="instructor-contact">
+        <div class="contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          khawajatahirmahmood@gmail.com
+        </div>
+        <div class="contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Office Hours: Tue–Fri, 9–4 PM
+        </div>
+        <div class="contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Room 204, CS Building
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--COURSE INTRO-->
+<section class="section section-alt" id="outline">
+  <div class="section-label">Course Introduction</div>
+  <h2 class="section-title">What Is This Course<br>About?</h2>
+  <div class="intro-grid">
+    <div class="intro-text">
+      <p>This course provides a comprehensive introduction to Human–Computer Interaction (HCI) — the study of how people interact with computers and how to design technology that is effective, efficient, and satisfying to use.</p>
+      <p>Students will explore the full design lifecycle: from understanding users through research and analysis, to ideating and prototyping solutions, to evaluating designs with real users. The course blends theory with hands-on practice using industry-standard tools.</p>
+      <div class="course-meta-pills">
+        <div class="meta-pill"><strong>Code:</strong>CSC 425-1</div>
+        <div class="meta-pill"><strong>Credits:</strong> 3 Hours</div>
+        <div class="meta-pill"><strong>Semester:</strong> Spring 2026</div>
+      </div>
+    </div>
+
+   <!-- COURSE OBJECTIVES -->
+<div class="objectives-list">
+  <div class="obj-title">Course Objectives</div>
+  <ul>
+    <li><span class="obj-num">01</span><div><strong>Understand HCI Fundamentals</strong><p>Learn the history, scope, and core principles of Human-Computer Interaction as a discipline.</p></div></li>
+    <li><span class="obj-num">02</span><div><strong>Human Information Processing</strong><p>Apply cognitive psychology concepts including memory, attention, and perception to UI design.</p></div></li>
+    <li><span class="obj-num">03</span><div><strong>The Computer's Role in HCI</strong><p>Analyze how computer hardware, input/output devices, and system performance affect interaction.</p></div></li>
+    <li><span class="obj-num">04</span><div><strong>Interaction Models</strong><p>Understand and apply Norman's interaction model including gulfs of execution and evaluation.</p></div></li>
+    <li><span class="obj-num">05</span><div><strong>Ergonomics & Workspace Design</strong><p>Design comfortable and efficient workspaces using physical ergonomics and anthropometry principles.</p></div></li>
+    <li><span class="obj-num">06</span><div><strong>Media & Interface Styles</strong><p>Explore different interaction paradigms including WIMP, touch, voice, gesture, and multimodal interfaces.</p></div></li>
+    <li><span class="obj-num">07</span><div><strong>TCUID & UCD Methods</strong><p>Apply Task-Centered User Interface Design and User-Centered Design principles to create usable interfaces.</p></div></li>
+    <li><span class="obj-num">08</span><div><strong>Heuristics & Design Guidelines</strong><p>Master Jakob Nielsen's 10 usability heuristics and best practices for intuitive UI design.</p></div></li>
+  </ul>
+</div>
+</div>
+</section>
+
+<!-- WEEKLY TOPICS -->
+<section class="section" id="topics">
+  <div class="section-label">Weekly Schedule</div>
+  <h2 class="section-title">Course Topics<br>& Details</h2>
+
+  <div class="weeks-grid">
+
+    <div class="week-card" data-week="1" data-topic="usability" data-date="2026-01-12">
+      <div class="week-header">
+        <div class="week-badge">Week 1</div>
+        <div class="week-date">Jan 12, 2026</div>
+      </div>
+      <h4>Introduction to HCI </h4>
+      <p>History, scope, and the usability challenge. Overview of HCI as a discipline.</p>
+      <div class="subtopics">
+        <span>What is HCI?</span>
+        <span>History & Evolution</span>
+        <span>Interaction Paradigms</span>
+        <span>The Usability Challenge</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="2" data-topic="cognitive" data-date="2026-01-19">
+      <div class="week-header">
+        <div class="week-badge">Week 2</div>
+        <div class="week-date">Jan 19, 2026</div>
+      </div>
+      <h4>Human Information Processing</h4>
+      <p>Understanding human information processing and its implications for UI design.</p>
+      <div class="subtopics">
+        <span>Memory & Attention</span>
+        <span>Mental Models</span>
+        <span>Perception</span>
+        <span>GOMS Model</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="3" data-topic="computer" data-date="2026-01-26">
+      <div class="week-header">
+        <div class="week-badge">Week 3</div>
+        <div class="week-date">Jan 26, 2026</div>
+      </div>
+      <h4>The Computer in HCI</h4>
+      <p>Exploring the role of the computer in human-computer interaction.</p>
+      <div class="subtopics">
+        <span>Computer Hardware</span>
+        <span>Input/Output Devices</span>
+        <span>System Performance</span>
+        <span>Interaction Platforms</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="4" data-topic="interaction" data-date="2026-02-02">
+      <div class="week-header">
+        <div class="week-badge">Week 4</div>
+        <div class="week-date">Feb 2, 2026</div>
+      </div>
+      <h4>The Interaction Model</h4>
+      <p>The interaction model and its application to user-centered design.</p>
+      <div class="subtopics">
+        <span>Norman's Model</span>
+        <span>Gulf of Execution</span>
+        <span>Gulf of Evaluation</span>
+        <span>User-Centered Design</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="5" data-topic="ergonomics" data-date="2026-02-09">
+      <div class="week-header">
+        <div class="week-badge">Week 5</div>
+        <div class="week-date">Feb 9, 2026</div>
+      </div>
+      <h4>Ergonomics & Workspace Design</h4>
+      <p>Physical ergonomics, workspace layout, and anthropometry in HCI.</p>
+      <div class="subtopics">
+        <span>Physical Ergonomics</span>
+        <span>Workspace Layout</span>
+        <span>Anthropometry</span>
+        <span>Health & Safety</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="6" data-topic="media" data-date="2026-02-16">
+      <div class="week-header">
+        <div class="week-badge">Week 6</div>
+        <div class="week-date">Feb 16, 2026</div>
+      </div>
+      <h4>Media & Interface Styles</h4>
+      <p>Explores different interaction paradigms including WIMP, touch, voice, gesture, and multimodal interfaces.</p>
+      <div class="subtopics">
+        <span>WIMP Interfaces</span>
+        <span>Touch & Gesture</span>
+        <span>Voice UI</span>
+        <span>Multimodal</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="7" data-topic="ucd" data-date="2026-02-23">
+      <div class="week-header">
+        <div class="week-badge">Week 7</div>
+        <div class="week-date">Feb 23, 2026</div>
+      </div>
+      <h4>Design & TCUID & UCD</h4>
+      <p>Task-Centered User Interface Design (TCUID) and User-Centered Design (UCD) principles, methods, and their application in creating usable interfaces.</p>
+      <div class="subtopics">
+        <span>TCUID</span>
+        <span>UCD Principles</span>
+        <span>Design Methods</span>
+        <span>Usable Interfaces</span>
+      </div>
+    </div>
+
+    <div class="week-card" data-week="8" data-topic="heuristics" data-date="2026-03-02">
+      <div class="week-header">
+        <div class="week-badge">Week 8</div>
+        <div class="week-date">Mar 2, 2026</div>
+      </div>
+      <h4>Heuristics & Design Guidelines for UI</h4>
+      <p>Covers Jakob Nielsen's 10 usability heuristics, design principles, and best practices for creating intuitive and user-friendly interfaces.</p>
+      <div class="subtopics">
+        <span>Nielsen's Heuristics</span>
+        <span>Design Principles</span>
+        <span>Best Practices</span>
+        <span>Usability Guidelines</span>
+      </div>
+    </div>
+     <!-- WEEK 9 -->
+    <div class="week-card" data-week="9" data-topic="heuristics" data-date="2026-03-09">
+      <div class="week-header">
+        <div class="week-badge">Week 9</div>
+        <div class="week-date">Mar 9, 2026</div>
+      </div>
+      <h4>Interface Design (When You Don't Know How) + Heuristics</h4>
+      <p>Nielsen's 10 usability heuristics, design guidelines, and evaluation methods for better user interfaces.</p>
+      <div class="subtopics">
+        <span>Nielsen's 10 Heuristics</span>
+        <span>Design Guidelines</span>
+        <span>Evaluation Methods</span>
+        <span>Expert Reviews</span>
+        <span>Heuristic Evaluation</span>
+      </div>
+    </div>
+
+    <!-- WEEK 10 -->
+    <div class="week-card" data-week="10" data-topic="ucd" data-date="2026-03-16">
+      <div class="week-header">
+        <div class="week-badge">Week 10</div>
+        <div class="week-date">Mar 16, 2026</div>
+      </div>
+      <h4>Design Approaches: Participatory, Task & UCD</h4>
+      <p>Participatory Design, Task-Centered Design, and User-Centered Design principles with practical examples.</p>
+      <div class="subtopics">
+        <span>Participatory Design</span>
+        <span>Task-Centered Design</span>
+        <span>UCD Principles</span>
+        <span>User Involvement</span>
+        <span>Design Methods</span>
+      </div>
+    </div>
+
+    <!-- WEEK 11 -->
+    <div class="week-card" data-week="11" data-topic="prototyping" data-date="2026-03-23">
+      <div class="week-header">
+        <div class="week-badge">Week 11</div>
+        <div class="week-date">Mar 23, 2026</div>
+      </div>
+      <h4>Prototyping in Interactive Systems</h4>
+      <p>Low-fidelity vs high-fidelity prototyping, paper prototyping, and wireframing tools for design iteration.</p>
+      <div class="subtopics">
+        <span>Low-fidelity Prototyping</span>
+        <span>High-fidelity Prototyping</span>
+        <span>Paper Prototyping</span>
+        <span>Wireframing Tools</span>
+        <span>Iterative Design</span>
+      </div>
+    </div>
+
+    <!-- WEEK 12 -->
+    <div class="week-card" data-week="12" data-topic="web" data-date="2026-03-30">
+      <div class="week-header">
+        <div class="week-badge">Week 12</div>
+        <div class="week-date">Mar 30, 2026</div>
+      </div>
+      <h4>1st Project Demo & Web Based Systems Design Issues</h4>
+      <p>Project showcase highlights, web design principles, information architecture, navigation, and responsiveness.</p>
+      <div class="subtopics">
+        <span>Project Demos</span>
+        <span>Information Architecture</span>
+        <span>Web Navigation</span>
+        <span>Responsive Design</span>
+        <span>Web Usability</span>
+      </div>
+    </div>
+
+    <!-- WEEK 13 -->
+    <div class="week-card" data-week="13" data-topic="evaluation" data-date="2026-04-06">
+      <div class="week-header">
+        <div class="week-badge">Week 13</div>
+        <div class="week-date">Apr 6, 2026</div>
+      </div>
+      <h4>Lab Practical: Website Usability Evaluation</h4>
+      <p>Hands-on heuristic evaluation of real websites, think-aloud method, and reporting usability findings.</p>
+      <div class="subtopics">
+        <span>Heuristic Evaluation</span>
+        <span>Think-Aloud Method</span>
+        <span>Usability Testing</span>
+        <span>Reporting Findings</span>
+        <span>Real Website Analysis</span>
+      </div>
+    </div>
+
+    <!-- WEEK 14 -->
+    <div class="week-card" data-week="14" data-topic="web" data-date="2026-04-13">
+      <div class="week-header">
+        <div class="week-badge">Week 14</div>
+        <div class="week-date">Apr 13, 2026</div>
+      </div>
+      <h4>Design, Implementation & Evaluation of Web Systems</h4>
+      <p>Full web lifecycle, implementation considerations, and evaluation metrics (task completion, error rate, satisfaction).</p>
+      <div class="subtopics">
+        <span>Web Design Lifecycle</span>
+        <span>Implementation</span>
+        <span>Task Completion</span>
+        <span>Error Rate</span>
+        <span>User Satisfaction</span>
+      </div>
+    </div>
+
+    <!-- WEEK 15 -->
+    <div class="week-card" data-week="15" data-topic="advanced" data-date="2026-04-20">
+      <div class="week-header">
+        <div class="week-badge">Week 15</div>
+        <div class="week-date">Apr 20, 2026</div>
+      </div>
+      <h4>Advanced HCI Topics + Course Revision</h4>
+      <p>CSCW, Groupware, Virtual Reality, Ubiquitous Computing, Information Visualization, and final course revision.</p>
+      <div class="subtopics">
+        <span>CSCW</span>
+        <span>Groupware</span>
+        <span>Virtual Reality (VR)</span>
+        <span>Ubiquitous Computing</span>
+        <span>Information Visualization</span>
+        <span>Course Revision</span>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="section section-alt" id="books">
+  <div class="section-label">Required Reading</div>
+  <h2 class="section-title">Books &<br>References</h2>
+  <div class="books-grid">
+
+    <div class="book-card">
+      <div class="book-spine" style="background:linear-gradient(160deg,#1a4f72,#2d7eb5)"></div>
+      <div class="book-info">
+        <div class="book-tag">Primary Textbook</div>
+        <h4>Human-computer Interaction</h4>
+        <p class="book-authors">Alan Dix</p>
+        <p class="book-edition"> 2nd Edition · Prentice-Hall, 2004</p>
+        <p class="book-desc">Human factors and ergonomics Volume 1 of Proceedings of HCI International 2003.</p>
+        <a href="https://www.amazon.com/s?k=9780130461094&i=stripbooks&linkCode=qs" target="_blank" class="book-link amazon">Buy on Amazon →</a>
+      </div>
+    </div>
+
+
+
+ <div class="book-card">
+      <div class="book-spine" style="background:linear-gradient(160deg,#1e6b44,#27ae60)"></div>
+      <div class="book-info">
+        <div class="book-tag">Reference</div>
+        <h4> Designing the User Interface</h4>
+        <p class="book-authors"> Ben Shneiderman</p>
+        <p class="book-edition">3rd Edition · Addison Wesley, 2004</p>
+        <p class="book-desc">UI design guidelines grounded in cognitive science and perceptual psychology — bridging theory and practice.</p>
+        <a href="https://www.amazon.com/Designing-User-Interface-Ben-Shneiderman/dp/0201694972" target="_blank" class="book-link amazon">Buy on Amazon →</a>
+      </div>
+    </div>
+
+
+
+    <div class="book-card">
+      <div class="book-spine" style="background:linear-gradient(160deg,#c0392b,#e74c3c)"></div>
+      <div class="book-info">
+        <div class="book-tag">Supplementary</div>
+        <h4>The Design of Everyday Things</h4>
+        <p class="book-authors">Don Norman</p>
+        <p class="book-edition">Revised Edition · Basic Books, 2013</p>
+        <p class="book-desc">A foundational read on human-centered design, affordances, and why things go wrong. Essential for every HCI student.</p>
+        <a href="https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654" target="_blank" class="book-link amazon">Buy on Amazon →</a>
+        <a href="https://www.basicbooks.com/titles/don-norman/the-design-of-everyday-things/9780465050659/" target="_blank" class="book-link">Buy on Basic Books →</a>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-spine" style="background:linear-gradient(160deg,#6d348a,#9b59b6)"></div>
+      <div class="book-info">
+        <div class="book-tag">Research Methods</div>
+        <h4>Observing the User Experience</h4>
+        <p class="book-authors">Goodman, Kuniavsky & Moed</p>
+        <p class="book-edition">2nd Edition · Morgan Kaufmann, 2012</p>
+        <p class="book-desc">A practical guide to user research techniques — interviews, surveys, usability testing, and field studies.</p>
+        <a href="https://www.amazon.com/Observing-User-Experience-Practitioners-Research/dp/0123848695" target="_blank" class="book-link amazon">Buy on Amazon →</a>
+        <a href="https://www.elsevier.com/books/observing-the-user-experience/goodman/978-0-12-384869-7" target="_blank" class="book-link">Buy on Elsevier →</a>
+      </div>
+    </div>
+
+    
+
+  </div>
+
+<!-- EVALUATION -->
+<section class="section" id="evaluation">
+  <div class="section-label">Assessment</div>
+  <h2 class="section-title">Course Evaluation<br>Criteria</h2>
+  <div class="eval-layout">
+    <div class="eval-chart">
+      <svg class="donut" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- Assignments 15% -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#2d7eb5" stroke-width="28"
+          stroke-dasharray="75.4 427.3" stroke-dashoffset="0"/>
+        <!-- Quizzes 5% -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#27ae60" stroke-width="28"
+          stroke-dasharray="25.1 477.5" stroke-dashoffset="-75.4"/>
+        <!-- Midterm 30% -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#e67e22" stroke-width="28"
+          stroke-dasharray="150.8 351.9" stroke-dashoffset="-100.5"/>
+        <!-- Final Exam 50% -->
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#e74c3c" stroke-width="28"
+          stroke-dasharray="251.3 251.3" stroke-dashoffset="-251.3"/>
+        <text x="110" y="105" text-anchor="middle" font-size="22" font-weight="700" fill="#1a4a6e">100%</text>
+        <text x="110" y="126" text-anchor="middle" font-size="11" fill="#5a7a96">Total Grade</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item"><span style="background:#2d7eb5"></span>Assignments 15%</div>
+        <div class="legend-item"><span style="background:#27ae60"></span>Quizzes 5%</div>
+        <div class="legend-item"><span style="background:#e67e22"></span>Midterm Exam 30%</div>
+        <div class="legend-item"><span style="background:#e74c3c"></span>Final Exam 50%</div>
+      </div>
+    </div>
+
+    <div class="eval-details">
+      <div class="eval-item">
+        <div class="eval-bar-wrap">
+          <div class="eval-label"><span class="eval-dot" style="background:#2d7eb5"></span>Assignments</div>
+          <div class="eval-pct">15%</div>
+        </div>
+        <div class="eval-bar"><div class="eval-fill" style="width:15%;background:#2d7eb5"></div></div>
+        <p>Weekly assignments covering design exercises, heuristic analysis, and reflection tasks.</p>
+      </div>
+      <div class="eval-item">
+        <div class="eval-bar-wrap">
+          <div class="eval-label"><span class="eval-dot" style="background:#27ae60"></span>Quizzes</div>
+          <div class="eval-pct">5%</div>
+        </div>
+        <div class="eval-bar"><div class="eval-fill" style="width:5%;background:#27ae60"></div></div>
+        <p>In-class quizzes testing understanding of key concepts, models, and design principles.</p>
+      </div>
+      <div class="eval-item">
+        <div class="eval-bar-wrap">
+          <div class="eval-label"><span class="eval-dot" style="background:#e67e22"></span>Midterm Exam</div>
+          <div class="eval-pct">30%</div>
+        </div>
+        <div class="eval-bar"><div class="eval-fill" style="width:30%;background:#e67e22"></div></div>
+        <p>Written exam covering Weeks 1–4. Mix of MCQs, short answers, and design critiques.</p>
+      </div>
+      <div class="eval-item">
+        <div class="eval-bar-wrap">
+          <div class="eval-label"><span class="eval-dot" style="background:#e74c3c"></span>Final Exam</div>
+          <div class="eval-pct">50%</div>
+        </div>
+        <div class="eval-bar"><div class="eval-fill" style="width:50%;background:#e74c3c"></div></div>
+        <p>Comprehensive open-book exam focusing on application of HCI evaluation methods.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- GRADING SCALE -->
+  <div class="grading-table-wrap">
+    <h3>Grading Scale</h3>
+    <div class="grading-table">
+      <div class="grade-row header"><span>Grade</span><span>Marks Range</span><span>GPA Points</span><span>Status</span></div>
+      <div class="grade-row"><span class="grade-letter">A+</span><span>81–100</span><span>4.0</span><span class="status pass">Distinction</span></div>
+      <div class="grade-row"><span class="grade-letter">A</span><span>76–80</span><span>4.0</span><span class="status pass">Excellent</span></div>
+      <div class="grade-row"><span class="grade-letter">B+</span><span>71–75</span><span>3.5</span><span class="status pass">Very Good</span></div>
+      <div class="grade-row"><span class="grade-letter">B</span><span>66–70</span><span>3.0</span><span class="status pass">Good</span></div>
+      <div class="grade-row"><span class="grade-letter">C+</span><span>61–65</span><span>2.5</span><span class="status pass">Above Average</span></div>
+      <div class="grade-row"><span class="grade-letter">C</span><span>56–60</span><span>2.0</span><span class="status pass">Average</span></div>
+      <div class="grade-row"><span class="grade-letter">D</span><span>50–55</span><span>1.5</span><span class="status warn">Passing</span></div>
+      <div class="grade-row"><span class="grade-letter">F</span><span>0–49</span><span>0.0</span><span class="status fail">Fail</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RESOURCES ══ -->
+<section class="section section-alt" id="resources">
+  <div class="section-label">Learning Materials</div>
+  <h2 class="section-title">Course Resources</h2>
+
+  <div class="resources-tabs">
+    <button class="res-tab active" data-tab="slides">📊 Lecture Slides</button>
+    <button class="res-tab" data-tab="videos">▶️ YouTube Lectures</button>
+    <button class="res-tab" data-tab="tools">🛠 Design Tools</button>
+  </div>
+<!-- LECTURE SLIDES PANEL -->
+  <div class="res-panel active" id="tab-slides">
+    <div class="resource-grid">
+      <div class="resource-card" data-week="1" data-topic="usability">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 1 </div>
+          <h4>Introduction to HCI</h4>
+          <p>History, scope, and the usability challenge. Overview of HCI as a discipline.</p>
+          <a href="https://docs.google.com/presentation/d/1OBGzy7RxDfiUb9sVuf4ylsxqO-m_i9Ij/edit?usp=drive_web&ouid=107909131734317511731&rtpof=true" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="2" data-topic="cognitive">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 2 </div>
+          <h4>Human Information Processing</h4>
+          <p> human information processing and its implications for UI design. </p>
+          <a href="https://docs.google.com/presentation/d/1xnT7eos-ng2S5IyfeVTgq8vw9BPTz6bn/edit?usp=drive_web&ouid=107909131734317511731&rtpof=true" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="3" data-topic="research">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 3 </div>
+          <h4>The Computer </h4>
+          <p> Exploring the role of the computer in human-computer interaction.</p>
+          <a href="https://docs.google.com/presentation/d/1KwKDQX6VvJFKmpzV4y33pk7GQa9FL9T_/edit" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="4" data-topic="design">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 4 </div>
+          <h4>The Interaction Model</h4>
+          <p> The interaction model and its application to user-centered design.</p>
+          <a href="https://docs.google.com/presentation/d/1jQukLgXinxb9wojk-H_PL9O-lSAWl2As/edit?slide=id.p1#slide=id.p1" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="5" data-topic="prototyping">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 5 </div>
+          <h4>Ergonomics & Workspace Design</h4>
+          <p> Physical ergonomics, workspace layout, and anthropometry in HCI. </p>
+          <a href="https://docs.google.com/presentation/d/1kSJPU16nDd9u0BkC94vFSgHVEluBCTup/edit?usp=drive_web&ouid=107909131734317511731&rtpof=true" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="6" data-topic="evaluation">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 6</div>
+          <h4>Media & Interface Styles</h4>
+          <p>Explores different interaction paradigms including WIMP, touch, voice, gesture, and multimodal interfaces.</p>
+          <a href="https://docs.google.com/presentation/d/1lt_MxNChX7fpagq7AwSLHRaVlW1Z53SF/edit?usp=drive_web&ouid=107909131734317511731&rtpof=true" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="7" data-topic="accessibility">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 7 </div>
+          <h4>Design & TCUID& UCD</h4>
+          <p>Task-Centered User Interface Design (TCUID) and User-Centered Design (UCD) principles, methods, and their application in creating usable interfaces.</p>
+          <a href="https://docs.google.com/presentation/d/1awKpIjUcNHVqRcQyw9rz6zTmwLO4puZb/edit" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+      <div class="resource-card" data-week="8" data-topic="design">
+        <div class="res-icon ppt">PPT</div>
+        <div class="res-body">
+          <div class="res-meta">Week 8 </div>
+          <h4>Heuristics & Design Guidelines for User Interface</h4>
+          <p>Covers Jakob Nielsen's 10 usability heuristics, design principles, and best practices for creating intuitive and user-friendly interfaces.
+
+</p>
+          <a href="https://docs.google.com/presentation/d/1n-h7oWD8AtRoAVdnrqslHSUKHgKr9UAJ/edit?slide=id.p1#slide=id.p1" class="res-link">Download Slides →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- YOUTUBE LECTURES PANEL - WEEK ACCORDION -->
+<div class="res-panel" id="tab-videos">
+  <div class="week-accordion">
+    
+    <!-- WEEK 1 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 1</span><span>Introduction to HCI</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 1.1: Introduction to HCI</h5><p>Full recorded lecture covering the history and scope of HCI as a field.</p><a href="https://www.youtube.com/watch?v=PCjP7emhm7M&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=1" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 1.2: Human Information Processing Model</h5><p>Explores the HIP model and its application to user-centered design.</p><a href="https://www.youtube.com/watch?v=mnXLKFGCsLs&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=2" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 2</span><span>Visual Perception & HIP Model</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 2.1: Visual Perception & Gestalt Law</h5><p>Explains Visual Perception and Sensory Information Processing in HCI.</p><a href="https://www.youtube.com/watch?v=jzUkeus2Zmk&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=3" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 2.2: Human Information Processing - LTM</h5><p>Discusses HIP and the role of Long-Term Memory in HCI.</p><a href="https://www.youtube.com/watch?v=2THkpthq8cU&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=4" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 3</span><span>Interactivity & Display Devices</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 3.1: Interactivity in HCI</h5><p>Focuses on interactivity and design considerations for user-system interaction.</p><a href="https://www.youtube.com/watch?v=fIC1XGb_0bg&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=5" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 3.2: Display Devices (Part 1)</h5><p>Explains display devices, their working principles, and applications.</p><a href="https://www.youtube.com/watch?v=vq3LQifjvh0&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=6" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 4</span><span>Interaction Models & Display Devices</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 4.1: Interaction Models</h5><p>The interaction model and its application to user-centered design.</p><a href="https://www.youtube.com/watch?v=TlmwNwCgiqI&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=7" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 4.2: Display Devices (Part 2)</h5><p>Continuation of display devices and their applications.</p><a href="https://www.youtube.com/watch?v=8d3rpzew4Rk&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=8" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 5 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 5</span><span>Design Guidelines & Ergonomics</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 5.1: Design Guidelines & Don Norman's Model</h5><p>Design guidelines and Donald Norman's interaction model.</p><a href="https://www.youtube.com/watch?v=aqYPwsH827M&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=9" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 5.2: Ergonomics in HCI</h5><p>Physical ergonomics, workspace layout, and anthropometry in HCI.</p><a href="https://www.youtube.com/watch?v=hzWr77RiHRI&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=10" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 6 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 6</span><span>User Interface Styles</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 6.1: User Interface Styles</h5><p>Explores different interaction paradigms including WIMP, touch, voice, gesture.</p><a href="https://www.youtube.com/watch?v=34RagMbaRhA&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=11" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 6.2: Form Fill-in Interface</h5><p>Design principles for form-based user interfaces.</p><a href="https://www.youtube.com/watch?v=IQjbIfjfRsY&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=12" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 7 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 7</span><span>Point & Click / WIMP Interfaces</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 7.1: Point and Click Interface</h5><p>Design principles for point-and-click interaction.</p><a href="https://www.youtube.com/watch?v=lixqP7zDHnw&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=13" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 7.2: WIMP Interface</h5><p>Windows, Icons, Menus, Pointers - the classic GUI paradigm.</p><a href="https://www.youtube.com/watch?v=WyPvp3C-FIg&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=14" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 8 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 8</span><span>Analysis Phase & Prototyping</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 8.1: Analysis Phase in HCI</h5><p>Requirements gathering and task analysis for interactive systems.</p><a href="https://www.youtube.com/watch?v=io3jAPzMBs0&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=15" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 8.2: Prototyping & Its Techniques</h5><p>Low-fidelity and high-fidelity prototyping methods.</p><a href="https://www.youtube.com/watch?v=Pb467LU9iOs&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=16" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 9 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 9</span><span>TCUID & User Centered Design</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 9.1: TCUID Process & User Centered Design</h5><p>Task-Centered User Interface Design and UCD principles.</p><a href="https://www.youtube.com/watch?v=dXAAEjReQ-s&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=17" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 9.2: Good User Interface & Guidelines</h5><p>Best practices and guidelines for effective UI design.</p><a href="https://www.youtube.com/watch?v=_ALni56svDA&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=18" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 10 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 10</span><span>Information Presentation</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 10.1: Information Presentation (Part 1)</h5><p>Principles of organizing and presenting information effectively.</p><a href="https://www.youtube.com/watch?v=3lU3gBMael0&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=19" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 10.2: Information Presentation (Part 2)</h5><p>Advanced techniques for data visualization and layout.</p><a href="https://www.youtube.com/watch?v=XrGRrhL1EFU&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=20" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 11 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 11</span><span>Evaluation Design & Process</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 11.1: Evaluation Design</h5><p>Methods and frameworks for evaluating interactive systems.</p><a href="https://www.youtube.com/watch?v=ZwWqTJMCCcA&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=21" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 11.2: Evaluation Process</h5><p>Step-by-step process for conducting usability evaluations.</p><a href="https://www.youtube.com/watch?v=lfXdTB5epj0&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=22" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 12 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 12</span><span>Usability Principles</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 12.1: Usability Principles (Part 1)</h5><p>Core principles of usability - Nielsen's heuristics 1-5.</p><a href="https://www.youtube.com/watch?v=rlxn9xBDfFk&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=23" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 12.2: Usability Principles (Part 2)</h5><p>Advanced usability principles - Nielsen's heuristics 6-10.</p><a href="https://www.youtube.com/watch?v=r3j9uu6h7G8&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=24" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 13 -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 13</span><span>Website Planning & Web Model</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>Lecture 13.1: Planning the Website & Web Model</h5><p>Strategies for planning and modeling web-based systems.</p><a href="https://www.youtube.com/watch?v=-B3rdw8YtF4&list=PLTaCJdY-YIzJbY-8V9DmbvepCbeAq7xR8&index=25" target="_blank" class="video-link">▶ Watch on YouTube →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 14 - Coming Soon -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 14</span><span>Design, Implementation & Evaluation (Coming Soon)</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>More videos coming soon</h5><p>Additional lectures will be added for Weeks 14-15.</p><a href="#" class="video-link">🔜 Coming Soon</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 15 - Coming Soon -->
+    <div class="week-accordion-item">
+      <div class="week-accordion-header">
+        <div class="week-title"><span class="week-badge-sm">Week 15</span><span>Advanced HCI Topics (Coming Soon)</span></div>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="week-accordion-content">
+        <div class="videos-list">
+          <div class="video-item"><div class="video-thumb"><i class="fas fa-play"></i></div><div class="video-info"><h5>More videos coming soon</h5><p>Advanced HCI topics and course revision.</p><a href="#" class="video-link">🔜 Coming Soon</a></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+ <!-- DESIGN TOOLS PANEL -->
+<div class="res-panel" id="tab-tools">
+  <div class="tools-grid">
+    <div class="tool-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma Logo" style="width: 56px; height: 56px; margin: 0 auto 16px; display: block; object-fit: contain;">
+      <h4>Figma</h4>
+      <p>Primary prototyping and design tool. Free education license available.</p>
+      <a href="https://figma.com" target="_blank" class="res-link">Access Figma →</a>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg" alt="Adobe XD Logo" style="width: 56px; height: 56px; margin: 0 auto 16px; display: block; object-fit: contain;">
+      <h4>Adobe XD</h4>
+      <p>Industry-standard UI/UX design and prototyping tool by Adobe.</p>
+      <a href="https://adobe.com/xd" target="_blank" class="res-link">Access Adobe XD →</a>
+    </div>
+
+   <div class="tool-card">
+  <div style="background: linear-gradient(135deg, #d95b2a, #e87c3e); width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: white;">B</div>
+  <h4>Balsamiq</h4>
+  <p>Wireframing tool for quick low-fidelity mockups and brainstorming.</p>
+  <a href="https://balsamiq.com" target="_blank" class="res-link">Access Balsamiq →</a>
+</div>
+   <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/miro.svg" alt="Miro Logo" style="width: 56px; height: 56px; margin: 0 auto 16px; display: block;">
+      <h4>Miro</h4>
+      <p>Collaborative whiteboard for journey mapping, brainstorming, and workshops.</p>
+      <a href="https://miro.com" target="_blank" class="res-link">Access Miro →</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="color:white"><span class="logo-icon">⬡</span><span>HCI<em>Course</em></span></div>
+      <p>CS-401 · Human Computer Interaction · Spring 2026<br>Department of Computer Science</p>
+    </div>
+    <div class="footer-links">
+      <a href="#instructor">Instructor</a>
+      <a href="#outline">Outline</a>
+      <a href="#topics">Topics</a>
+      <a href="#books">Books</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Human Computer Interaction Course · Sir. Khawaja Tahir</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
